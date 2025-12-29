@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* 
+     FORCE LIGHT THEME PALETTE
+     This matches the clean "Engineering Lab" aesthetic 
+  */
+  
+  /* Main Background: Very light cool grey (almost white) */
+  --color-background: hsl(210 40% 98%);
+  
+  /* Text: Deep Navy/Black for high contrast */
+  --color-foreground: hsl(222 47% 11%);
+
+  /* Primary Blue: Standard Engineering Blue */
+  --color-primary: hsl(221 83% 53%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  /* Cards: Pure White */
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+
+  /* Borders: Light Grey */
+  --color-border: hsl(214 32% 91%);
+  
+  /* Muted Text: Soft Grey */
+  --color-muted: hsl(215 16% 47%);
+  
+  --radius-lg: 0.75rem;
+  --font-inter: var(--font-inter);
+  --font-space: var(--font-space);
+}
+
+/* Global Reset */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space);
+}
