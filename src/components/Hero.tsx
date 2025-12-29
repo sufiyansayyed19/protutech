@@ -1,10 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Zap, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsSmallScreen(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-10 pb-16 md:pt-16 md:pb-24">
       {/* Background Grid Pattern */}
@@ -54,9 +66,9 @@ export default function Hero() {
             </div>
             
             {/* Trust Badges */}
-            <div className="flex gap-6 text-sm text-gray-500 font-medium pt-2">
-              <div className="flex items-center gap-1">✅ 100% Output Guaranteed</div>
-              <div className="flex items-center gap-1">✅ Full Guidance</div>
+            <div className="flex flex-col gap-2 pt-2 text-xs text-gray-500 font-medium sm:flex-row sm:gap-6 sm:text-sm">
+              <div className="flex items-center gap-1 whitespace-nowrap">✅ 100% Output Guaranteed</div>
+              <div className="flex items-center gap-1 whitespace-nowrap">✅ Full Guidance</div>
             </div>
           </motion.div>
 
@@ -130,9 +142,9 @@ export default function Hero() {
 
             {/* Floating Badge: "Documentation Included" */}
             <motion.div 
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, isSmallScreen ? -16 : -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="absolute top-3 right-3 sm:-top-4 sm:-right-4 bg-white p-3 rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 flex items-center gap-3"
+              className="absolute -top-10 right-4 z-20 sm:-top-4 sm:-right-4 bg-white p-3 rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 flex items-center gap-3"
             >
               <div className="h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
                 <BookOpen size={16} />
